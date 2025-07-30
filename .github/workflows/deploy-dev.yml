@@ -11,10 +11,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Read version
+      - name: Read and show version
+        id: read_version
         run: |
           VERSION=$(cat VERSION)
-          echo "Deployed version $VERSION to Development"
+          echo "Version to deploy: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Simulate Deployment
-        run: echo "Dummy deployment to Development environment complete."
+        run: |
+          echo "✅ Starting dummy deployment to Development environment..."
+          echo "📦 Deployed version: $VERSION"
+          echo "✅ Deployment complete."
